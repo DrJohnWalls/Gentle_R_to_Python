@@ -2,7 +2,7 @@
 import time
 import argparse
 
-def fizzbuzzboom(input_value):
+def fizzbuzzboom(input_value, secret_key=524):
     """
     The fizzbuzzboom function takes numeric inputs and provides a result.
     """
@@ -16,7 +16,7 @@ def fizzbuzzboom(input_value):
         print ("Please enter an integer")
         return
 
-    if x == 524:
+    if x == secret_key:
         delay = 0.5
         print("You have entered the self destruct code...")
         time.sleep(delay)
@@ -43,7 +43,8 @@ def fizzbuzzboom(input_value):
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("number", default=15, type=float, help="submit an integer or float to fizzbuzzboom")
+    parser.add_argument("-k", "--key", default=524, type=float, help="secret key to intitialize self destruct sequence")
     args = parser.parse_args()
 
     print("[*] Calculating the result...")
-    fizzbuzzboom(args.number)
+    fizzbuzzboom(args.number, args.key)
